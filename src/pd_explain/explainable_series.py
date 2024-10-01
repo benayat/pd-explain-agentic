@@ -163,7 +163,7 @@ class ExpSeries(pd.Series):
             self,
     ):
         return ExpSeries(super().drop_duplicates())
-    def explain(self, schema: dict = None, attributes: List = None, top_k: int = 1, figs_in_row: int = 2, explainer='fedex',
+    async def explain(self, schema: dict = None, attributes: List = None, top_k: int = 1, figs_in_row: int = 2, explainer='fedex',
                 target=None, dir=None, control=None, hold_out=[],
                 show_scores: bool = False, title: str = None):
         """
@@ -193,5 +193,5 @@ class ExpSeries(pd.Series):
         if self.operation is None:
             print('no operation was found.')
             return
-        return self.operation.explain(schema=schema, attributes=attributes, top_k=top_k, explainer=explainer, target=target, dir=dir, control=control, hold_out=hold_out,
+        return await self.operation.explain(schema=schema, attributes=attributes, top_k=top_k, explainer=explainer, target=target, dir=dir, control=control, hold_out=hold_out,
                                       figs_in_row=figs_in_row, show_scores=show_scores, title=title)

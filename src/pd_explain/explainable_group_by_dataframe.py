@@ -448,7 +448,7 @@ class ExpDataFrameGroupBy(DataFrameGroupBy):
 
         return result
 
-    def explain(self, schema: dict = None, attributes: list = None, top_k: int = 1, figs_in_row: int = 2,
+    async def explain(self, schema: dict = None, attributes: list = None, top_k: int = 1, figs_in_row: int = 2,
                 target=None, dir=None, control=None, hold_out=[],
                 show_scores: bool = False, title: str = None, ignore=[]):
 
@@ -461,5 +461,5 @@ class ExpDataFrameGroupBy(DataFrameGroupBy):
             print('no operation was found.')
             return
         mean_agg = self.mean()
-        mean_agg.explain(schema=schema, attributes=attributes, top_k=top_k, explainer='fedex', target=target, dir=dir,
+        await mean_agg.explain(schema=schema, attributes=attributes, top_k=top_k, explainer='fedex', target=target, dir=dir,
                                       figs_in_row=figs_in_row, show_scores=show_scores, title=title, ignore=ignore)
